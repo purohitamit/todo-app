@@ -2,17 +2,33 @@
 
 {% block body %}
 <h2>All my to do taks are here</h2>
-
+<br>
+<hr>
+<h2> Incomplete Tasks </h2>
+<br>
+<hr>
 {% for task in all_tasks %}
-
-<p>
+<span style="color: blue;"> 
+    {% if task.completed == False %}
+    
     Task ID: {{ task.id }}<br>
     Task Description: {{ task.description }}<br>
-    {% if task.completed == True %}
-    Completed!!!
-    {% else %}
-    It is still Incomplete
-    {% endif %}
     
+    {% endif %}    
+</span>
 {% endfor %}
+<hr>
+<h2> Completed Tasks </h2>
+<br>
+<hr>
+{% for task in all_tasks %}
+<span style="color: blueviolet;">
+    {% if task.completed == True %}
+    
+    Task ID: {{ task.id }}<br>
+    Task Description: {{ task.description }}<br>
+</span>
+    {% endif %}
+
+{% endfor%}
 {% endblock body %}
