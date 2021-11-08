@@ -1,5 +1,14 @@
+from flask.templating import render_template
 from application import app, db
 from application.models import Tasks
+from flask import render_template
+
+
+@app.route('/')
+@app.route('/home')
+def home():
+    all_tasks = Tasks.query.all()
+    return render_template('index.html', title = "home", all_tasks=all_tasks)
 
 @app.route('/create/task')
 def create_task():
