@@ -1,11 +1,15 @@
 {% extends "layout.html"%}
 
 {% block body %}
-<h2>All my to do taks are here</h2>
-<br>
+
+<h2 style="color: blue; text-align: center;">All my to do taks are here</h2>
+
 <hr>
-<h2> Incomplete Tasks </h2>
-<br>
+<span style="color:red">
+<marquee width="100%" direction="right" height="50px">
+<h2>&#128520;Incomplete Tasks &#128520;</h2></marquee>
+
+</span>
 <hr>
 {% for task in all_tasks %}
 <span style="color: blue;"> 
@@ -19,8 +23,10 @@
 </span>
 {% endfor %}
 <hr>
-<h2> Completed Tasks </h2>
-<br>
+<span style="color:green">
+<marquee width="100%" direction="left" height="50px">
+<h2> &#128151;&#128151;Completed Tasks&#128151;&#128151; </h2></marquee></span>
+
 <hr>
 {% for task in all_tasks %}
 <span style="color: blueviolet;">
