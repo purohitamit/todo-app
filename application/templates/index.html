@@ -13,7 +13,8 @@
     
     Task ID: {{ task.id }}<br>
     Task Description: {{ task.description }}<br>
-    <button type=button onclick="window.location.href='{{ url_for('update_task', id=task.id) }}'">Update Task </button><br>
+    <button type=button onclick="window.location.href='{{ url_for('update_task', id=task.id) }}'">Update Task </button>
+    <button type=button onclick="window.location.href='{{ url_for('delete_task', id=task.id) }}'">Delete Task </button><br>
     {% endif %}    
 </span>
 {% endfor %}
@@ -27,8 +28,9 @@
     
     Task ID: {{ task.id }}<br>
     Task Description: {{ task.description }}<br>
-    <button onclick="{{ url_for('update_task', id=task.id) }}">Update Task </button>
-    {% endif %}
+    <button type=button onclick="window.location.href='{{ url_for('update_task', id=task.id) }}'">Update Task </button>
+    <button type=button onclick="window.location.href='{{ url_for('delete_task', id=task.id) }}'">Delete Task </button><br>
+    {% endif %}   
 </span>
 
 {% endfor%}
