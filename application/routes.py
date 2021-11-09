@@ -11,7 +11,10 @@ def home():
     all_tasks = Tasks.query.all()
     return render_template('index.html', title = "Home", all_tasks=all_tasks)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature/3/create
 @app.route('/create/task', methods= ['GET', 'POST'])
 def create_task():
     form = TaskForm()
