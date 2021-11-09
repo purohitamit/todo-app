@@ -9,7 +9,7 @@ from application.forms import TaskForm
 @app.route('/home')
 def home():
     all_tasks = Tasks.query.all()
-    return render_template('index.html', title = "home", all_tasks=all_tasks)
+    return render_template('index.html', title = "Home", all_tasks=all_tasks)
 
 
 @app.route('/create/task', methods= ['GET', 'POST'])
@@ -36,12 +36,16 @@ def read_tasks():
             )
     return tasks_dict
 
-@app.route('/update/task/<int:id>/<new_description>')
-def update_task(id, new_description):
+@app.route('/update/task/<int:id>', methods = ['GET', 'POST'])
+def update_task(id):
+    form = TaskForm()
     task = Tasks.query.get(id)
-    task.description = new_description
-    db.session.commit()
-    return f'task{id} updated to {new_description}'
+    if request.method == "POST":
+        task.description = form.description.data
+        db.session.commit()
+        return redirect(url_for('home'))
+
+    return render_template("update_task.html", task=task, form=form, title = "Update")
 
 
 @app.route('/delete/task/<int:id>')
