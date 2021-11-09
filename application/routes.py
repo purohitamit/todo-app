@@ -11,10 +11,6 @@ def home():
     all_tasks = Tasks.query.all()
     return render_template('index.html', title = "Home", all_tasks=all_tasks)
 
-<<<<<<< HEAD
-
-=======
->>>>>>> feature/3/create
 @app.route('/create/task', methods= ['GET', 'POST'])
 def create_task():
     form = TaskForm()
@@ -56,7 +52,7 @@ def delete_task(id):
     task = Tasks.query.get(id)
     db.session.delete(task)
     db.session.commit()
-    return f'task{id} is deleted now.'
+    return redirect(url_for('home'))
 
 @app.route('/complete/task/<int:id>')
 def complete_task(id):
