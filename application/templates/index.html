@@ -13,7 +13,7 @@
     
     Task ID: {{ task.id }}<br>
     Task Description: {{ task.description }}<br>
-    
+    <button type=button onclick="window.location.href='{{ url_for('update_task', id=task.id) }}'">Update Task </button><br>
     {% endif %}    
 </span>
 {% endfor %}
@@ -27,7 +27,7 @@
     
     Task ID: {{ task.id }}<br>
     Task Description: {{ task.description }}<br>
-
+    <button onclick="{{ url_for('update_task', id=task.id) }}">Update Task </button>
     {% endif %}
 </span>
 

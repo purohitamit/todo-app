@@ -1,9 +1,10 @@
 {% extends "layout.html"%}
-{% block body %}
-<<<<<<< HEAD
 
-=======
->>>>>>> feature/3/create
+{% block body %}
+<b>Current Description: </b>{{ task.description}}
+<br>
+<hr>
+
 <div class='form'>
     <form method='POST' action=''>
         {{ form.hidden_tag() }}
