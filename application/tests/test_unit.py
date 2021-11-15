@@ -49,5 +49,32 @@ class TestViews(TestBase):
     
 class TestRead(TestBase):
     def test_read_home_task(self):
+        response = self.client.get(url_for("home"))
+        self.assertIn(b"Run unit test", response.data)
+
+    def test_read_task_dictionary(self):
         response = self.client.get(url_for("read_tasks"))
         self.assertIn(b"Run unit test", response.data)
+
+class TestCreate(TestBase):
+    def test_create_task(self):
+        response = self.client.post(
+            url_for("create_task"),
+            data ={"description": "Testing create functionality"},
+            follow_redirects=True
+        )
+        self.assertIn(b"Testing create functionality", response.data)
+
+class TestUpdate(TestBase):
+    def test_update_task(self):
+        response = self.client.post(
+            url_for("update_task", id=1),
+            data ={"description": "Testing update functionality"},
+            follow_redirects=True
+        )
+        self.assertIn(b"Testing update functionality", response.data)
+
+class TestDelete(TestBase):
+    def test_delete_task(self):
+        response = self.client.get(url_for("delete_task", id=1), follow_redirects=True)
+        self.assertNotIn(b"Run unit test", response.data)
