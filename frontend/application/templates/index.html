@@ -1,0 +1,45 @@
+{% extends "layout.html"%}
+
+{% block body %}
+
+<h2 style="color: blue; text-align: center;">All my to do taks are here</h2>
+
+<hr>
+<span style="color:red">
+<marquee width="100%" direction="right" height="50px">
+<h2>&#128520;Incomplete Tasks &#128520;</h2></marquee>
+
+</span>
+<hr>
+{% for task in all_tasks %}
+<span style="color: blue;"> 
+    {% if task["completed"] == False %}
+    
+    Task ID: {{ task["id"] }}<br>
+    Task Description: {{ task["description"] }}<br>
+    <button type=button onclick="window.location.href='{{ url_for('update_task', id=task.id) }}'">Update Task </button>
+    <button type=button onclick="window.location.href='{{ url_for('delete_task', id=task.id) }}'">Delete Task </button>
+    <button type=button onclick="window.location.href='{{ url_for('complete_task', id=task.id) }}'">Complete Task </button><br>
+    {% endif %}    
+</span>
+{% endfor %}
+<hr>
+<span style="color:green">
+<marquee width="100%" direction="left" height="50px">
+<h2> &#128151;&#128151;Completed Tasks&#128151;&#128151; </h2></marquee></span>
+
+<hr>
+{% for task in all_tasks %}
+<span style="color: blueviolet;">
+    {% if task["completed"] == True %}
+    
+    Task ID: {{ task["id"] }}<br>
+    Task Description: {{ task["description"} }}<br>
+    <button type=button onclick="window.location.href='{{ url_for('update_task', id=task.id) }}'">Update Task </button>
+    <button type=button onclick="window.location.href='{{ url_for('delete_task', id=task.id) }}'">Delete Task </button>
+    <button type=button onclick="window.location.href='{{ url_for('incomplete_task', id=task.id) }}'">Incomplete Task </button><br>
+    {% endif %}   
+</span>
+
+{% endfor%}
+{% endblock body %}
