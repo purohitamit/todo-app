@@ -34,7 +34,7 @@
     {% if task["completed"] == True %}
     
     Task ID: {{ task["id"] }}<br>
-    Task Description: {{ task["description"} }}<br>
+    Task Description: {{ task["description"] }}<br>
     <button type=button onclick="window.location.href='{{ url_for('update_task', id=task.id) }}'">Update Task </button>
     <button type=button onclick="window.location.href='{{ url_for('delete_task', id=task.id) }}'">Delete Task </button>
     <button type=button onclick="window.location.href='{{ url_for('incomplete_task', id=task.id) }}'">Incomplete Task </button><br>

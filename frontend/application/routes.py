@@ -7,7 +7,7 @@ import requests
 @app.route('/')
 @app.route('/home')
 def home():
-    all_tasks = request.get("http://todo-app-backend:5000/read/allTasks").json()
+    all_tasks = requests.get("http://todo-app-backend:5000/read/allTasks").json()
     return render_template('index.html', title = "Home", all_tasks=all_tasks["tasks"])
 
 
@@ -24,9 +24,9 @@ def create_task():
 @app.route('/update/task/<int:id>', methods = ['GET', 'POST'])
 def update_task(id):
     form = TaskForm()
-    task = requests.get(f"http://todo-app-backend:5000/read/task/{id}")
+    task = requests.get(f"http://todo-app-backend:5000/read/task/{id}").json()
     if request.method == "POST":
-        response = requests.post(f"http://todo-app-backend:5000/create/task/{id}", json={"description": form.description.data} )
+        response = requests.put(f"http://todo-app-backend:5000/update/task/{id}", json={"description": form.description.data} )
         return redirect(url_for('home'))
 
     return render_template("update_task.html", task=task, form=form, title = "Update")
@@ -34,22 +34,16 @@ def update_task(id):
 
 @app.route('/delete/task/<int:id>')
 def delete_task(id):
-    task = Tasks.query.get(id)
-    db.session.delete(task)
-    db.session.commit()
+    response = requests.delete(f"http://todo-app-backend:5000/delete/task/{id}")
     return redirect(url_for('home'))
 
 @app.route('/complete/task/<int:id>')
 def complete_task(id):
-    task = Tasks.query.get(id)
-    task.completed = True
-    db.session.commit()
+    response = requests.put(f"http://todo-app-backend:5000/complete/task/{id}")
     return redirect(url_for('home'))
 
 @app.route('/incomplete/task/<int:id>')
 def incomplete_task(id):
-    task = Tasks.query.get(id)
-    task.completed = False
-    db.session.commit()
+    response = requests.put(f"http://todo-app-backend:5000/incomplete/task/{id}")
     return redirect(url_for('home'))
 
