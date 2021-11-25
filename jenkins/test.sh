@@ -1,3 +1,3 @@
 #!/bin/bash
 
-echo "Test stage"
+echo "Test stage 2"
