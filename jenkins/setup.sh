@@ -10,6 +10,7 @@ sudo apt-get install -y curl jq
 # install docker
 
 curl https://get.docker.com | sudo bash
+sudo usermod -aG docker jenkins
 
 #install docker compose
 
